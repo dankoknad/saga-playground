@@ -17,7 +17,7 @@ yield takeEvery('INCREMENT_ASYNC', incrementAsync)
 }
 
 function* helloSaga() {
-    console.log('Hello Sagas 22!')
+    yield console.log('Hello Sagas!')
 }
 
 export default function* rootSaga() {
@@ -26,3 +26,4 @@ export default function* rootSaga() {
       watchIncrementAsync()
     ])
   }
+  

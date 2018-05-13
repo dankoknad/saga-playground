@@ -8,6 +8,13 @@ class Counter extends Component {
     this.incrementIfOdd = this.incrementIfOdd.bind(this);
   }
 
+  static propTypes = {
+    value: PropTypes.number.isRequired,
+    onIncrement: PropTypes.func.isRequired,
+    onDecrement: PropTypes.func.isRequired,
+    onIncrementAsync: PropTypes.func.isRequired
+  };
+
   incrementIfOdd() {
     if (this.props.value % 2 !== 0) {
       this.props.onIncrement()
