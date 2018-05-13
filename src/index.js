@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import createSagaMiddleware from 'redux-saga'
 import Counter from './components/Counter'
 import counter from './reducers'
-
+import './app.css'
 import rootSaga from './sagas'
 
 const sagaMiddleware = createSagaMiddleware()
