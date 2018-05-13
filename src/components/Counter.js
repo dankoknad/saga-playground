@@ -5,6 +5,9 @@ import { connect } from 'react-redux'
 class Counter extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      userId: ''
+    }
     this.incrementIfOdd = this.incrementIfOdd.bind(this);
   }
 
@@ -15,6 +18,10 @@ class Counter extends Component {
     onIncrementAsync: PropTypes.func.isRequired
   };
 
+  handleInput = (e) => {
+    this.setState({userId: e.target.value})
+  }
+
   incrementIfOdd() {
     if (this.props.value % 2 !== 0) {
       this.props.onIncrement()
@@ -22,7 +29,7 @@ class Counter extends Component {
   }
 
   render() {
-    const { value, onIncrement, onDecrement, onIncrementAsync } = this.props
+    const { value, onIncrement, onDecrement, onIncrementAsync, onSomeButtonClicked } = this.props
     return (
       <p className="text-center">
         Count: {value}
@@ -42,6 +49,11 @@ class Counter extends Component {
         <button onClick={onIncrementAsync}>
           Increment async
         </button>
+        <br/>
+        <input onChange={this.handleInput} />{' '} 
+        <button onClick={() => onSomeButtonClicked(this.state.userId)}>
+          fetch user (in console)
+        </button>
       </p>
     )
   }
@@ -58,7 +70,8 @@ const mapDispatchToProps = dispatch => {
   return {
     onIncrement: () => { dispatch({type: 'INCREMENT'}) },
     onDecrement: () => {  dispatch({type: 'DECREMENT'}) },
-    onIncrementAsync: () => {  dispatch({type: 'INCREMENT_ASYNC'}) }
+    onIncrementAsync: () => {  dispatch({type: 'INCREMENT_ASYNC'}) },
+    onSomeButtonClicked:   (userId) => {  dispatch({type: 'USER_FETCH_REQUESTED', payload: { userId }}) }
   }
 }
 
