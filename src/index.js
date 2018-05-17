@@ -4,14 +4,14 @@ import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import createSagaMiddleware from 'redux-saga'
 import App from './components/App'
-import counter from './reducers'
+import rootReducer from './reducers'
 import './app.css'
 import rootSaga from './sagas'
 
 const sagaMiddleware = createSagaMiddleware()
 
 const store = createStore(
-  counter,
+  rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(sagaMiddleware)
 )
