@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-class Counter extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,7 +29,7 @@ class Counter extends Component {
   }
 
   render() {
-    const { value, onIncrement, onDecrement, onIncrementAsync, onSomeButtonClicked } = this.props
+    const { value, onIncrement, onDecrement, onIncrementAsync, fetchUser } = this.props
     return (
       <p className="text-center">
         Count: {value}
@@ -51,7 +51,7 @@ class Counter extends Component {
         </button>
         <br/>
         <input onChange={this.handleInput} />{' '} 
-        <button onClick={() => onSomeButtonClicked(this.state.userId)}>
+        <button onClick={() => fetchUser(this.state.userId)}>
           fetch user (in console)
         </button>
       </p>
@@ -71,8 +71,8 @@ const mapDispatchToProps = dispatch => {
     onIncrement: () => { dispatch({type: 'INCREMENT'}) },
     onDecrement: () => {  dispatch({type: 'DECREMENT'}) },
     onIncrementAsync: () => {  dispatch({type: 'INCREMENT_ASYNC'}) },
-    onSomeButtonClicked:   (userId) => {  dispatch({type: 'USER_FETCH_REQUESTED', payload: { userId }}) }
+    fetchUser: (userId) => {  dispatch({type: 'USER_FETCH_REQUESTED', payload: { userId }}) }
   }
 }
 
-export default Counter = connect(mapStateToProps, mapDispatchToProps)(Counter)
+export default App = connect(mapStateToProps, mapDispatchToProps)(App)

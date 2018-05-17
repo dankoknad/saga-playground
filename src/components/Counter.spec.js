@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import Counter from './Counter'
+import App from './App'
 
 function setup(value = 0) {
   const actions = {
@@ -8,7 +8,7 @@ function setup(value = 0) {
     onDecrement: jest.fn()
   }
   const component = shallow(
-    <Counter value={value} {...actions} />
+    <App value={value} {...actions} />
   )
 
   return {
