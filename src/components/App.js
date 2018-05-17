@@ -34,7 +34,7 @@ class App extends Component {
       <div>
         <p className="text-center">
           Count: {value}
-          <br/>
+          <br/><br/>
           <button onClick={onIncrement}>
             +
           </button>
@@ -42,7 +42,7 @@ class App extends Component {
           <button onClick={onDecrement}>
             -
           </button>
-          <br/>
+          <br/><br/>
           <button onClick={this.incrementIfOdd}>
             Increment if odd
           </button>
@@ -50,15 +50,15 @@ class App extends Component {
           <button onClick={onIncrementAsync}>
             Increment async
           </button>
-          <br/>
+          <br/><br/>
           <input onChange={this.handleInput} />{' '} 
           <button onClick={() => fetchUser(this.state.userId)}>
-            fetch user (in console)
+            fetch user
           </button>
 
-        </p>
+        </p><br/><br/>
          <div>
-         { user && <img src={user['avatar_url']} alt="Smiley face" height="42" width="42" />}
+         { user && user['avatar_url'] && <img src={user['avatar_url']} alt="Smiley face" height="42" width="42" />}
 
           <pre style={{fontSize: 12}}>{JSON.stringify(user, null, 2)}</pre>
         </div>
