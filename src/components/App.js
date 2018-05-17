@@ -29,32 +29,41 @@ class App extends Component {
   }
 
   render() {
-    const { value, onIncrement, onDecrement, onIncrementAsync, fetchUser } = this.props
+    const { value, onIncrement, onDecrement, onIncrementAsync, fetchUser, user } = this.props
     return (
-      <p className="text-center">
-        Count: {value}
-        <br/>
-        <button onClick={onIncrement}>
-          +
-        </button>
-        {' '}
-        <button onClick={onDecrement}>
-          -
-        </button>
-        <br/>
-        <button onClick={this.incrementIfOdd}>
-          Increment if odd
-        </button>
-        {' '}
-        <button onClick={onIncrementAsync}>
-          Increment async
-        </button>
-        <br/>
-        <input onChange={this.handleInput} />{' '} 
-        <button onClick={() => fetchUser(this.state.userId)}>
-          fetch user (in console)
-        </button>
-      </p>
+      <div>
+        <p className="text-center">
+          Count: {value}
+          <br/>
+          <button onClick={onIncrement}>
+            +
+          </button>
+          {' '}
+          <button onClick={onDecrement}>
+            -
+          </button>
+          <br/>
+          <button onClick={this.incrementIfOdd}>
+            Increment if odd
+          </button>
+          {' '}
+          <button onClick={onIncrementAsync}>
+            Increment async
+          </button>
+          <br/>
+          <input onChange={this.handleInput} />{' '} 
+          <button onClick={() => fetchUser(this.state.userId)}>
+            fetch user (in console)
+          </button>
+
+        </p>
+         <div>
+         { user && <img src={user['avatar_url']} alt="Smiley face" height="42" width="42" />}
+
+          <pre style={{fontSize: 12}}>{JSON.stringify(user, null, 2)}</pre>
+        </div>
+  
+      </div>  
     )
   }
 }
@@ -62,7 +71,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    value: state.counter
+    value: state.counter,
+    user: state.user.user
   }
 }
 

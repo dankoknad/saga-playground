@@ -29,3 +29,5 @@ const render = () => ReactDOM.render(
 
 render()
 store.subscribe(render)
+
+store.subscribe(() => console.log('store:', store.getState()))
