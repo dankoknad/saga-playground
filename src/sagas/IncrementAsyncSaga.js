@@ -11,7 +11,7 @@ function* incrementAsync() {
   yield put({ type: 'INCREMENT' })
   yield delay(1200)
   yield put({ type: 'INCREMENT' })
-}ß
+}
 
 // Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
 export function* IncrementAsyncSaga() {

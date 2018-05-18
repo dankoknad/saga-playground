@@ -7,5 +7,5 @@ export const counter = (state = 0, action) => {
       return state - 1
     default:
       return state
-  }ß
+  }
 }
