@@ -8,7 +8,7 @@ class App extends Component {
     this.state = {
       userId: ''
     }
-    this.incrementIfOdd = this.incrementIfOdd.bind(this);
+    this.inputRef = React.createRef();
   }
 
   static propTypes = {
@@ -20,16 +20,28 @@ class App extends Component {
 
   handleInput = (e) => {
     this.setState({userId: e.target.value})
+    if(e.which === 13) {
+      this.handleFetch()
+    }
   }
 
-  incrementIfOdd() {
+  incrementIfOdd= () => {
     if (this.props.value % 2 !== 0) {
       this.props.onIncrement()
     }
   }
 
+  handleFetch = () => {
+    if(this.state.userId) {
+      this.props.fetchUser(this.state.userId)
+      this.setState({userId: ''})
+      this.inputRef.current.value= '';
+      this.inputRef.current.focus();
+    }
+  }
+
   render() {
-    const { value, onIncrement, onDecrement, onIncrementAsync, fetchUser, user } = this.props
+    const { value, onIncrement, onDecrement, onIncrementAsync, user } = this.props
     return (
       <div>
         <p className="text-center">
@@ -51,14 +63,17 @@ class App extends Component {
             Increment async
           </button>
           <br/><br/>
-          <input onChange={this.handleInput} />{' '} 
-          <button onClick={() => fetchUser(this.state.userId)}>
+          <input
+            onKeyUp={this.handleInput}
+            ref={this.inputRef} 
+          />{' '} 
+          <button onClick={this.handleFetch}>
             fetch user
           </button>
 
         </p><br/><br/>
-         <div>
-         { user && user['avatar_url'] && <img src={user['avatar_url']} alt="Smiley face" height="42" width="42" />}
+        <div style={{maxWidth: 550, margin: '0 auto'}}>
+          { user && user['avatar_url'] && <img src={user['avatar_url']} alt="Smiley face" height="42" width="42" />}
 
           <pre style={{fontSize: 12}}>{JSON.stringify(user, null, 2)}</pre>
         </div>
