@@ -4,9 +4,9 @@ import { fetchUserSaga } from './fetchUserSaga'
 import { IncrementAsyncSaga } from './IncrementAsyncSaga'
 
 export default function* rootSaga() {
-    yield all([
-        helloSaga(),
-        fetchUserSaga(),
-        IncrementAsyncSaga()
-    ])
+  yield all([
+    helloSaga(),
+    fetchUserSaga(),
+    IncrementAsyncSaga()
+  ])
 }
